@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ProductCard({ product, onDelete, onEdit }) {
+function ProductCard({ product, onDelete, onEdit, onDetail }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedProduct, setEditedProduct] = useState({ ...product });
 
@@ -54,6 +54,12 @@ function ProductCard({ product, onDelete, onEdit }) {
           <p className="text-sm text-gray-600">${product.price}</p>
           <p className="text-sm mt-2">{product.description}</p>
           <div className="mt-2 flex gap-2">
+            <button
+              className="text-green-500"
+              onClick={() => onDetail(product.id)}
+            >
+              Detail
+            </button>
             <button
               className="text-blue-500"
               onClick={() => setIsEditing(true)}
