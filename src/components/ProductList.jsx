@@ -13,23 +13,69 @@ function ProductList() {
   }, []);
 
   const fetchProducts = async () => {
-    // TODO: GET /products API를 호출하고 products state를 업데이트
+    // GET /products API를 호출하고 products state를 업데이트
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      console.error("상품 목록을 불러오는데 실패했습니다:", error);
+    }
   };
 
   const handleDelete = async (id) => {
-    // TODO: DELETE API를 호출하고 fetchProducts() 호출
+    // DELETE API를 호출하고 fetchProducts() 호출
+    try {
+      await fetch(`${API_URL}/${id}`, {
+        method: "DELETE",
+      });
+      fetchProducts();
+    } catch (error) {
+      console.error("상품을 삭제하는데 실패했습니다:", error);
+    }
   };
 
   const handleAdd = async (newProduct) => {
-    // TODO: POST API를 호출하고 fetchProducts() 호출
+    // POST API를 호출하고 fetchProducts() 호출
+    try {
+      await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProduct),
+      });
+      fetchProducts();
+    } catch (error) {
+      console.error("상품을 추가하는데 실패했습니다:", error);
+    }
   };
 
   const handleEdit = async (updatedProduct) => {
-    // TODO: PUT API를 호출하고 fetchProducts() 호출
+    // PUT API를 호출하고 fetchProducts() 호출
+    try {
+      await fetch(`${API_URL}/${updatedProduct.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+      });
+      fetchProducts();
+    } catch (error) {
+      console.error("상품을 수정하는데 실패했습니다:", error);
+    }
   };
 
   const handleDetail = async (id) => {
-    // TODO: GET /products/:id API를 호출하고 selectedProduct state를 업데이트
+    // GET /products/:id API를 호출하고 selectedProduct state를 업데이트
+    try {
+      const response = await fetch(`${API_URL}/${id}`);
+      const data = await response.json();
+      setSelectedProduct(data);
+    } catch (error) {
+      console.error("상품 상세 정보를 불러오는데 실패했습니다:", error);
+    }
   };
 
   return (
@@ -61,9 +107,14 @@ function ProductList() {
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {products.map((product) => (
-          // TODO: ProductCard 컴포넌트를 적절히 호출하기
-          // Note that you should specify key, product, onDelete, onEdit, onDetail
-          <></>
+          // ProductCard 컴포넌트를 적절히 호출하기
+          <ProductCard
+            key={product.id}
+            product={product}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            onDetail={handleDetail}
+          />
         ))}
       </div>
     </div>
