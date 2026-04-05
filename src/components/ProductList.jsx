@@ -26,7 +26,7 @@ function ProductList() {
   };
 
   const handleAdd = async (newProduct) => {
-    // TODO: POST API를 호출하고 fetchProducts() 호출
+    // TODO: POST API를 호출하고 fetchProducts() 호출//
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
