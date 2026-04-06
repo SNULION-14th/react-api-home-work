@@ -179,18 +179,6 @@
         "rate": 4.7,
         "count": 130
       }
-    },
-    {
-      "id": "19",
-      "title": "Opna Women's Short Sleeve Moisture",
-      "price": 7.95,
-      "description": "100% Polyester, Machine wash, 100% cationic polyester interlock, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away.",
-      "category": "women's clothing",
-      "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400&h=400&fit=crop",
-      "rating": {
-        "rate": 4.5,
-        "count": 146
-      }
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
