@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductForm from "./ProductForm";
+import instance from "../axios/axios";
 
 const API_URL = "http://localhost:3000/products";
 
@@ -14,22 +15,57 @@ function ProductList() {
 
   const fetchProducts = async () => {
     // TODO: GET /products API를 호출하고 products state를 업데이트
+    try {
+      const getProducts = await instance.get("/products");
+      setProducts(getProducts.data);
+      return getProducts.data;
+    } catch (e) {
+      throw new Error("Error: fetchProducts");
+    }
   };
 
   const handleDelete = async (id) => {
     // TODO: DELETE API를 호출하고 fetchProducts() 호출
+    try{
+      const delProducts = await instance.delete(`/products/${id}`);
+      fetchProducts();
+      return delProducts.data;
+    } catch (e) {
+      throw new Error("Error: delProducts");
+    }
   };
 
   const handleAdd = async (newProduct) => {
     // TODO: POST API를 호출하고 fetchProducts() 호출
+    try{
+      const addProduct = await instance.post("/products", newProduct);
+      fetchProducts();
+      return addProduct.data;
+    } catch(e) {
+      throw new Error("Error: handelAdd");
+    }
   };
 
   const handleEdit = async (updatedProduct) => {
-    // TODO: PUT API를 호출하고 fetchProducts() 호출
+    // TODO: PUT API를 호출하고 fetchProducts() 
+    try{
+      const editProduct = await instance.put(`/products/${updatedProduct.id}`,updatedProduct,)
+      fetchProducts();
+      return editProduct.data;
+    } catch(e) {
+      throw new Error("Error: handleEdit");
+    }
   };
 
   const handleDetail = async (id) => {
     // TODO: GET /products/:id API를 호출하고 selectedProduct state를 업데이트
+    try{
+      const detailProduct = await instance.get(`/products/${id}`);
+      selectedProduct(detailProduct.data);
+      return detailProduct.data;
+    } catch(e) {
+      throw new Error("Error: handleDetail");
+    }
   };
 
   return (
@@ -63,7 +99,13 @@ function ProductList() {
         {products.map((product) => (
           // TODO: ProductCard 컴포넌트를 적절히 호출하기
           // Note that you should specify key, product, onDelete, onEdit, onDetail
-          <></>
+          <ProductCard
+            key={product.id}
+            product={product}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            onDetail={handleDetail}
+          ></ProductCard>
         ))}
       </div>
     </div>
