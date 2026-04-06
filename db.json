@@ -61,18 +61,6 @@
       }
     },
     {
-      "id": "9",
-      "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0",
-      "price": 64,
-      "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7",
-      "category": "electronics",
-      "image": "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=400&h=400&fit=crop",
-      "rating": {
-        "rate": 3.3,
-        "count": 203
-      }
-    },
-    {
       "id": "10",
       "title": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
       "price": 109,
@@ -99,7 +87,7 @@
     {
       "id": "12",
       "title": "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
-      "price": 114,
+      "price": 115,
       "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
       "category": "electronics",
       "image": "https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=400&h=400&fit=crop",
@@ -130,18 +118,6 @@
       "rating": {
         "rate": 2.2,
         "count": 140
-      }
-    },
-    {
-      "id": "15",
-      "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-      "price": 56.99,
-      "description": "Lightweight perfect for trip or casual wear. Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat.",
-      "category": "women's clothing",
-      "image": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=400&fit=crop",
-      "rating": {
-        "rate": 2.6,
-        "count": 235
       }
     },
     {
@@ -191,6 +167,18 @@
         "rate": 4.5,
         "count": 146
       }
+    },
+    {
+      "title": "test",
+      "price": 10,
+      "description": "test",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1920px-Image_created_with_a_mobile_phone.png",
+      "category": "test",
+      "rating": {
+        "rate": 0,
+        "count": 0
+      },
+      "id": "LD8NTG76mFY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
