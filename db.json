@@ -3,8 +3,8 @@
     {
       "id": "1",
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      "price": 109.95,
-      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "price": 110,
+      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday!",
       "category": "men's clothing",
       "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop",
       "rating": {
@@ -61,18 +61,6 @@
       }
     },
     {
-      "id": "9",
-      "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0",
-      "price": 64,
-      "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7",
-      "category": "electronics",
-      "image": "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=400&h=400&fit=crop",
-      "rating": {
-        "rate": 3.3,
-        "count": 203
-      }
-    },
-    {
       "id": "10",
       "title": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
       "price": 109,
@@ -99,7 +87,7 @@
     {
       "id": "12",
       "title": "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
-      "price": 114,
+      "price": 115,
       "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
       "category": "electronics",
       "image": "https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=400&h=400&fit=crop",
@@ -130,54 +118,6 @@
       "rating": {
         "rate": 2.2,
         "count": 140
-      }
-    },
-    {
-      "id": "15",
-      "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-      "price": 56.99,
-      "description": "Lightweight perfect for trip or casual wear. Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat.",
-      "category": "women's clothing",
-      "image": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=400&fit=crop",
-      "rating": {
-        "rate": 2.6,
-        "count": 235
-      }
-    },
-    {
-      "id": "16",
-      "title": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
-      "price": 29.95,
-      "description": "100% POLYURETHANE(shell) 100% POLYESTER(lining). Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket.",
-      "category": "women's clothing",
-      "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop",
-      "rating": {
-        "rate": 2.9,
-        "count": 340
-      }
-    },
-    {
-      "id": "17",
-      "title": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
-      "price": 39.99,
-      "description": "Lightweight perfect for trip or casual wear. Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat.",
-      "category": "women's clothing",
-      "image": "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=400&h=400&fit=crop",
-      "rating": {
-        "rate": 3.8,
-        "count": 679
-      }
-    },
-    {
-      "id": "18",
-      "title": "MBJ Women's Solid Short Sleeve Boat Neck V",
-      "price": 9.85,
-      "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline.",
-      "category": "women's clothing",
-      "image": "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=400&h=400&fit=crop",
-      "rating": {
-        "rate": 4.7,
-        "count": 130
       }
     },
     {
