@@ -14,22 +14,62 @@ function ProductList() {
 
   const fetchProducts = async () => {
     // TODO: GET /products API를 호출하고 products state를 업데이트
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
   };
 
   const handleDelete = async (id) => {
     // TODO: DELETE API를 호출하고 fetchProducts() 호출
+    try {
+      await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+      fetchProducts();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
   const handleAdd = async (newProduct) => {
     // TODO: POST API를 호출하고 fetchProducts() 호출
+    try {
+      await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newProduct),
+      });
+      fetchProducts();
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
   };
 
   const handleEdit = async (updatedProduct) => {
     // TODO: PUT API를 호출하고 fetchProducts() 호출
+    try {
+      await fetch(`${API_URL}/${updatedProduct.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedProduct),
+      });
+      fetchProducts();
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
   };
 
   const handleDetail = async (id) => {
     // TODO: GET /products/:id API를 호출하고 selectedProduct state를 업데이트
+    try {
+      const response = await fetch(`${API_URL}/${id}`);
+      const data = await response.json();
+      setSelectedProduct(data);
+    } catch (error) {
+      console.error("Error fetching detail:", error);
+    }
   };
 
   return (
@@ -44,11 +84,16 @@ function ProductList() {
               className="h-48 object-contain mx-auto mb-4"
             />
             <h2 className="text-xl font-bold mb-1">{selectedProduct.title}</h2>
-            <p className="text-gray-500 text-sm mb-1">{selectedProduct.category}</p>
-            <p className="text-lg font-semibold mb-2">${selectedProduct.price}</p>
+            <p className="text-gray-500 text-sm mb-1">
+              {selectedProduct.category}
+            </p>
+            <p className="text-lg font-semibold mb-2">
+              ${selectedProduct.price}
+            </p>
             <p className="text-sm mb-3">{selectedProduct.description}</p>
             <p className="text-sm text-yellow-500">
-              ⭐ {selectedProduct.rating?.rate} ({selectedProduct.rating?.count}개 리뷰)
+              ⭐ {selectedProduct.rating?.rate} ({selectedProduct.rating?.count}
+              개 리뷰)
             </p>
             <button
               className="mt-4 bg-gray-200 px-4 py-1 rounded"
@@ -62,8 +107,13 @@ function ProductList() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {products.map((product) => (
           // TODO: ProductCard 컴포넌트를 적절히 호출하기
-          // Note that you should specify key, product, onDelete, onEdit, onDetail
-          <></>
+          <ProductCard
+            key={product.id}
+            product={product}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            onDetail={handleDetail}
+          />
         ))}
       </div>
     </div>
