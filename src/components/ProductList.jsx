@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductForm from "./ProductForm";
+import instance from "../axios/axios.js";
 
 const API_URL = "http://localhost:3000/products";
 
@@ -14,22 +15,60 @@ function ProductList() {
 
   const fetchProducts = async () => {
     // TODO: GET /products API를 호출하고 products state를 업데이트
+    try {
+      const getProducts = await instance.get("/products");
+      setProducts(getProducts.data);
+      return getProducts.data;
+    } catch (e) {
+      throw new Error("fetchProducts 에러");
+    }
   };
 
   const handleDelete = async (id) => {
     // TODO: DELETE API를 호출하고 fetchProducts() 호출
+    try {
+      const deleteProduct = await instance.delete(`/products/${id}`);
+      fetchProducts();
+      return deleteProduct.data;
+    } catch (e) {
+      throw new Error("handleDelete 에러");
+    }
   };
 
   const handleAdd = async (newProduct) => {
     // TODO: POST API를 호출하고 fetchProducts() 호출
+    try {
+      const addProduct = await instance.post("/products", newProduct);
+      fetchProducts();
+      return addProduct.data;
+    } catch (e) {
+      throw new Error("handleAdd 에러");
+    }
   };
 
   const handleEdit = async (updatedProduct) => {
     // TODO: PUT API를 호출하고 fetchProducts() 호출
+    try {
+      const editProduct = await instance.put(
+        `/products/${updatedProduct.id}`,
+        updatedProduct,
+      );
+      fetchProducts();
+      return editProduct.data;
+    } catch (e) {
+      throw new Error("handleEdit 에러");
+    }
   };
 
   const handleDetail = async (id) => {
     // TODO: GET /products/:id API를 호출하고 selectedProduct state를 업데이트
+    try {
+      const getSelectedProduct = await instance.get(`/products/${id}`);
+      setSelectedProduct(getSelectedProduct.data);
+      return getSelectedProduct.data;
+    } catch (e) {
+      throw new Error("handleDetail 에러");
+    }
   };
 
   return (
@@ -44,11 +83,16 @@ function ProductList() {
               className="h-48 object-contain mx-auto mb-4"
             />
             <h2 className="text-xl font-bold mb-1">{selectedProduct.title}</h2>
-            <p className="text-gray-500 text-sm mb-1">{selectedProduct.category}</p>
-            <p className="text-lg font-semibold mb-2">${selectedProduct.price}</p>
+            <p className="text-gray-500 text-sm mb-1">
+              {selectedProduct.category}
+            </p>
+            <p className="text-lg font-semibold mb-2">
+              ${selectedProduct.price}
+            </p>
             <p className="text-sm mb-3">{selectedProduct.description}</p>
             <p className="text-sm text-yellow-500">
-              ⭐ {selectedProduct.rating?.rate} ({selectedProduct.rating?.count}개 리뷰)
+              ⭐ {selectedProduct.rating?.rate} ({selectedProduct.rating?.count}
+              개 리뷰)
             </p>
             <button
               className="mt-4 bg-gray-200 px-4 py-1 rounded"
@@ -63,7 +107,13 @@ function ProductList() {
         {products.map((product) => (
           // TODO: ProductCard 컴포넌트를 적절히 호출하기
           // Note that you should specify key, product, onDelete, onEdit, onDetail
-          <></>
+          <ProductCard
+            key={product.id}
+            product={product}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            onDetail={handleDetail}
+          ></ProductCard>
         ))}
       </div>
     </div>
