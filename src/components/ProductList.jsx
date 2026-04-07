@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductForm from "./ProductForm";
+import { getProducts } from "./getProducts";
+import { deleteProducts } from "./deleteProducts";
+import { createProducts } from "./createProducts";
+import { editProducts } from "./editProducts";
+import { getProductDetail } from "./getProductDetail";
 
 const API_URL = "http://localhost:3000/products";
 
@@ -14,22 +19,52 @@ function ProductList() {
 
   const fetchProducts = async () => {
     // TODO: GET /products API를 호출하고 products state를 업데이트
+    try {
+      const productsResponse = await getProducts();
+      setProducts(productsResponse);
+    } catch (error) {
+      console.error("product API 불러오기 error", error);
+    }
   };
 
   const handleDelete = async (id) => {
     // TODO: DELETE API를 호출하고 fetchProducts() 호출
+    try {
+      await deleteProducts(id);
+      fetchProducts();
+    } catch (e) {
+      console.error("product 삭제 error", e);
+    }
   };
 
   const handleAdd = async (newProduct) => {
     // TODO: POST API를 호출하고 fetchProducts() 호출
+    try {
+      await createProducts(newProduct);
+      fetchProducts();
+    } catch (e) {
+      console.error("product 생성 error", e);
+    }
   };
 
   const handleEdit = async (updatedProduct) => {
     // TODO: PUT API를 호출하고 fetchProducts() 호출
+    try {
+      await editProducts(updatedProduct);
+      fetchProducts();
+    } catch (e) {
+      console.error("product 수정 error", e);
+    }
   };
 
   const handleDetail = async (id) => {
     // TODO: GET /products/:id API를 호출하고 selectedProduct state를 업데이트
+    try {
+      const productData = await getProductDetail(id);
+      setSelectedProduct(productData);
+    } catch (e) {
+      console.error("product 상세 조회 error", e);
+    }
   };
 
   return (
@@ -44,11 +79,16 @@ function ProductList() {
               className="h-48 object-contain mx-auto mb-4"
             />
             <h2 className="text-xl font-bold mb-1">{selectedProduct.title}</h2>
-            <p className="text-gray-500 text-sm mb-1">{selectedProduct.category}</p>
-            <p className="text-lg font-semibold mb-2">${selectedProduct.price}</p>
+            <p className="text-gray-500 text-sm mb-1">
+              {selectedProduct.category}
+            </p>
+            <p className="text-lg font-semibold mb-2">
+              ${selectedProduct.price}
+            </p>
             <p className="text-sm mb-3">{selectedProduct.description}</p>
             <p className="text-sm text-yellow-500">
-              ⭐ {selectedProduct.rating?.rate} ({selectedProduct.rating?.count}개 리뷰)
+              ⭐ {selectedProduct.rating?.rate} ({selectedProduct.rating?.count}
+              개 리뷰)
             </p>
             <button
               className="mt-4 bg-gray-200 px-4 py-1 rounded"
@@ -63,7 +103,13 @@ function ProductList() {
         {products.map((product) => (
           // TODO: ProductCard 컴포넌트를 적절히 호출하기
           // Note that you should specify key, product, onDelete, onEdit, onDetail
-          <></>
+          <ProductCard
+            key={product.id}
+            product={product}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            onDetail={handleDetail}
+          />
         ))}
       </div>
     </div>
